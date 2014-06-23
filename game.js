@@ -48,7 +48,8 @@ $.each(questions.Rock, function(i) {
     });
 
   var names = ["Roberto","Carol","Jessica","Philip","Leonardo","Muller"
-  ,"Ronaldo","Neymar","Chet","Pat","Sue"];
+  ,"Ronaldo","Neymar","Chet","Pat","Sue","Camilo","Elias","Felipe","Hulk","Lula", "Marky"
+  ,"Zinc", "Ozzy", "Donky Kong", "Lola", "Duke", "Carlos"];
 
   var randomName = function(){
     id = Math.floor(Math.random()*names.length);
@@ -111,7 +112,7 @@ $.each(questions.Rock, function(i) {
       return ;
     };
 
-    if(isPlayable(parseInt(howManyPlayers) + 1)){
+    if(!this.isPlayable(parseInt(howManyPlayers) + 1)){
       return ;
     }
 
@@ -235,7 +236,7 @@ $.each(questions.Rock, function(i) {
     consoleGeneric(players[currentPlayer] + " is the current player");
     consoleGeneric("They have rolled a " + roll);
     if(inPenaltyBox[currentPlayer]){
-      leavePenality(roll);
+      this.leavePenality(roll);
     }else{
     this.currentPlace(roll);
     consoleGeneric(players[currentPlayer] + "'s new location is " + places[currentPlayer]);
