@@ -9,3 +9,5 @@ The questions are under /libs/js/questions.js - although is using a json structu
 
 this project uses jquery, bootstrap, fontawsome, google fonts and jasmine
 
+This is a fork from https://github.com/jbrains/trivia - javascript
+

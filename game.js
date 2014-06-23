@@ -189,7 +189,7 @@ $.each(questions.Rock, function(i) {
             answer = game.wasCorrectlyAnswered();
             callback.call(this, answer);
           }
-        }, 2000);  
+        }, 3000);  
     } else{
     $("#playerTurn").html(currentQuestion);
     setTimeout( function() {
@@ -221,7 +221,7 @@ $.each(questions.Rock, function(i) {
                 }                
             }    
     });
-    }, 1000);
+    }, 2000);
   }
 };
 
