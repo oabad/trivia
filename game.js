@@ -176,16 +176,19 @@ $.each(questions.Rock, function(i) {
     }
 
     if(currentPlayer != 0){
-        if(Math.floor(Math.random()*2) == 1){
-        answer =  game.wrongAnswer();
-        callback.call(this, answer);
-      }else{
-        answer = game.wasCorrectlyAnswered();
-         callback.call(this, answer);
-      }
+        setTimeout( function() {
+          if(Math.floor(Math.random()*2) == 1){
+            answer =  game.wrongAnswer();
+            callback.call(this, answer);  
+          }else{
+            answer = game.wasCorrectlyAnswered();
+            callback.call(this, answer);
+          }
+        }, 2000);  
     } else{
     $("#playerTurn").html(currentQuestion);
-    $("#playerTurn").dialog({
+    setTimeout( function() {
+      $("#playerTurn").dialog({
         resizable: false,
         modal: true,
         closeOnEscape: false,
@@ -213,8 +216,9 @@ $.each(questions.Rock, function(i) {
                 }                
             }    
     });
-    } 
-  };
+    }, 1000);
+  }
+};
 
   this.leavePenality = function(roll){
     if(inPenaltyBox[currentPlayer]){
