@@ -17,6 +17,8 @@ exports.Game = function() {
 
   var currentPlayer    = 0;
   var isGettingOutOfPenaltyBox = false;
+  var div = $('#gameConsole');
+  var height = div.height();
 
 //Defining Questions
 $.each(questions.Sports, function(i) {
@@ -126,6 +128,7 @@ $.each(questions.Rock, function(i) {
 
   this.run = function() {
     this.roll(Math.floor(Math.random()*6) + 1);
+    height += div.height();
     if(inPenaltyBox[currentPlayer]){
           game.setNextPlayer();
           game.run();
@@ -147,6 +150,8 @@ $.each(questions.Rock, function(i) {
   };
 
   var askQuestion = function(callback){
+     
+
       if(currentCategory() == 'Pop'){
       random = Math.floor(Math.random()*popQuestions.length);
       currentQuestion = popQuestions[random][0];
@@ -231,6 +236,7 @@ $.each(questions.Rock, function(i) {
         return true;
       } else{
         consoleGeneric(players[currentPlayer] + " is not getting out of the penalty box");
+        div.animate({scrollTop: height}, 500);
         false;
       }
     }
@@ -262,12 +268,15 @@ $.each(questions.Rock, function(i) {
                 purses[currentPlayer]  + " Gold Coins</b>.");
 
     var winner = this.didPlayerWin();
+    div.animate({scrollTop: height}, 500);
+
     return winner;
   };
 
   this.wrongAnswer = function(){
 		consolePenalty(players[currentPlayer]);
 		inPenaltyBox[currentPlayer] = true;
+    div.animate({scrollTop: height}, 500);
     return true;
   };
 
