@@ -1,0 +1,91 @@
+<html>
+<head>
+	<title> The Trivia Game </title> 
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+	<link href='http://fonts.googleapis.com/css?family=Oswald' rel='stylesheet' type='text/css'>
+</head>
+<body>
+<div class="container">
+<header>
+<section id="splashTitle">
+	<div class="row">
+		<div class="gameTitle col-md-10">
+			<h1>Welcome to the Trivia game!</h1>
+		</div>
+		<div class="gameIcon col-md-2 ">
+			<i class="fa fa-gamepad fa-6"></i>
+		</div>
+	</div>
+</section>
+	
+</header>
+
+<section id="newGame">
+<div class="row">
+	<div class="avatar col-md-2">
+		<img src="lib/img/default_avatar.png">
+	</div>
+
+	<div id="boxNewUser" class="col-md-6">
+		<div class="form-group">
+			<label for="email" > Your Email (for gravatar) : </label>
+			<input class="form-control" type="text" id="email" >
+		</div>
+
+		<div class="form-group">
+			<label for="name"> Your Name : </label>
+			<label for="name" id="name-required" class="hide"> This field is required :/</label>
+			<input class="form-control" type="text" id="name">
+
+		</div>
+		<div class="form-group">
+			<label for="nrOponents"> How many Oponents :</label>
+			<label for="nrOponents" id="qty-required" class="hide"> This field is required and has to be a number! :/</label>
+			<label for="nrOponents" id="qty-error" class="hide"> The number of players has to be between 2 and 4 :/</label>
+			<input class="form-control" type="number" name="quantity" value= "2" min="2" max="4" id="nrOponents">
+		</div>
+		<button id="btnCreateGame" type="submit" class="btn btn-default" onclick="game.setup()"> Create New Game! </button>
+	</div>
+	
+	<div id="instructions" class="col-md-4">
+		<h3> How to play? </h3>
+		<p> First, set your email to get a avatar from <b>gravatar</b>, then set a user name and number of computer oponents.</p>
+
+		<p> Each round, the question will be about a theme. If give the correct answer, you will gain a Coin</p>
+
+		<p> If the answer is wrong, you will be putted on Penality and will only leave if your roll get a odd number</p>
+
+		<p>The player who get 6 coins first, win the game!</p>
+
+	</div>
+
+</div>
+</section>
+
+<section id="game" class="hide">
+	<div id="players" class="col-md-2">
+	
+	</div>
+		
+	<div id="gameConsole" class="col-md-10">
+	
+	</div>
+
+	<div id="playerTurn"></div>
+</section>
+</div>
+<link rel="stylesheet" href="lib/css/font-awesome.min.css">
+<link rel="stylesheet" href="lib/css/bootstrap.min.css">
+<link rel="stylesheet" href="lib/css/jquery-ui-1.10.4.custom.min.css">
+<script type="text/javascript" src='lib/js/jquery-1.11.1.min.js'></script>
+<script type="text/javascript" src='lib/js/jquery-ui-1.10.4.custom.min.js'></script>
+<script type="text/javascript" src='lib/js/bootstrap.min.js'></script>
+<script type="text/javascript" src='lib/js/md5.js'></script>
+<script type="text/javascript" src='lib/js/input.js'></script>
+<script type="text/javascript" src='lib/js/questions.js'></script>
+<script type="text/javascript" src='./game.js'></script>
+<link rel="stylesheet" href="lib/css/trivia.css">
+
+</body>
+
+

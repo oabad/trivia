@@ -1,0 +1,64 @@
+h1 { 
+	font-family: 'Oswald', sans-serif;
+	font-size: 69px;
+}
+
+#newGame{
+	padding-top: 50px;
+}
+
+.gameTitle{
+	padding-left: 100px;
+}
+
+.penalty
+{
+	color: #FF0000;
+}
+.fa-gamepad{
+	font-size: 110px;
+}
+
+.hide{
+	display: none;
+}
+
+#gameConsole{
+	height:100%;
+	overflow:auto;
+}
+
+.avatar {
+	padding-top: 24px;
+}
+.avatar img{
+	width: 170px;
+}
+
+#players img{
+	width: 90px;	
+}
+
+.playerName{
+	padding-top: 5px;
+	padding-bottom: 15px;
+	width: 135px;
+	margin: 0 auto;
+}
+
+.show{
+	display: block;
+}
+
+.avatar img , #players img{
+-moz-border-radius: 28px;
+-webkit-border-radius: 5px;
+-moz-border-radius-bottomright: 10px;
+-webkit-border-bottom-right-radius: 10px;
+border-radius: 28px;
+}
+
+#name-error, #name-required, #qty-error, #qty-required{
+	color: #D00000;
+}
+
