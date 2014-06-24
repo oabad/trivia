@@ -28,28 +28,24 @@ exports.Game = function() {
           sportsQuestions[i] = new Array();
           sportsQuestions[i].push(questions.Sports[i].Question);
           sportsQuestions[i].push(questions.Sports[i].answer);
-          sportsQuestions[i].push(questions.Sports[i].tip);
     });
 
   $.each(questions.Science, function(i) {
           scienceQuestions[i] = new Array();
           scienceQuestions[i].push(questions.Science[i].Question);
           scienceQuestions[i].push(questions.Science[i].answer);
-          scienceQuestions[i].push(questions.Science[i].tip);
     });
 
   $.each(questions.Pop, function(i) {
           popQuestions[i] = new Array();
           popQuestions[i].push(questions.Pop[i].Question);
           popQuestions[i].push(questions.Pop[i].answer);
-          popQuestions[i].push(questions.Pop[i].tip);
     });
 
   $.each(questions.Rock, function(i) {
           rockQuestions[i] = new Array();
           rockQuestions[i].push(questions.Rock[i].Question);
           rockQuestions[i].push(questions.Rock[i].answer);
-          rockQuestions[i].push(questions.Rock[i].tip);
     });
 
   var names = ["Roberto","Carol","Jessica","Philip","Leonardo","Muller"
@@ -72,7 +68,7 @@ exports.Game = function() {
   };
   
   this.setFirstPlayer = function(nroPlayers){
-    playernro  =Math.floor(Math.random()*nroPlayers);
+    playernro = Math.floor(Math.random()*nroPlayers);
     return playernro;
   };  
 
@@ -145,8 +141,6 @@ exports.Game = function() {
   };
 
   var askQuestion = function(callback){
-      
-
       if( game.currentCategory() == 'Pop'){
       random = Math.floor(Math.random()*popQuestions.length);
       currentQuestion = popQuestions[random][0];
@@ -258,7 +252,7 @@ exports.Game = function() {
   };
 
   this.wasCorrectlyAnswered = function(){
-    consoleGeneric("Answer was correct!!!!");
+    consoleGeneric("<span class='green'>Answer was correct!!!!<span>");
     purses[currentPlayer] += 1;
     consoleGeneric(players[currentPlayer] + " now has <b>" +
                 purses[currentPlayer]  + " Gold Coins</b>.");
