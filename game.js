@@ -19,10 +19,6 @@ exports.Game = function() {
   var currentPlayer    = 0;
   var isGettingOutOfPenaltyBox = false;
 
-  //scrool
-  var div = $('#gameConsole');
-  var height = div.height();
-
   //Defining Questions
   $.each(questions.Sports, function(i) {
           sportsQuestions[i] = new Array();
@@ -119,12 +115,12 @@ exports.Game = function() {
 
   this.run = function() {
     this.roll();
-    height += div.height();
+    
 
     if(!inPenaltyBox[currentPlayer]){
       askQuestion(function(answer){
         if(game.didPlayerWin()){
-        consolePlayerWon(player[currentPlayer]);
+        consolePlayerWon(players[currentPlayer]);
         } else {
           game.setNextPlayer();
           game.run();
@@ -250,14 +246,12 @@ exports.Game = function() {
   this.wasCorrectlyAnswered = function(){
     purses[currentPlayer] += 1;
     consoleCorrectAnswer(players[currentPlayer], purses[currentPlayer]);
-    div.animate({scrollTop: height}, 500);
     return true;
   };
 
   this.wrongAnswer = function(){
 		consolePenalty(players[currentPlayer]);
 		inPenaltyBox[currentPlayer] = true;
-    div.animate({scrollTop: height}, 500);
     return true;
   };
 
