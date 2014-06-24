@@ -119,9 +119,7 @@ exports.Game = function() {
 
     if(!inPenaltyBox[currentPlayer]){
       askQuestion(function(answer){
-        if(game.didPlayerWin()){
-        consolePlayerWon(players[currentPlayer]);
-        } else {
+        if(!game.didPlayerWin()){
           game.setNextPlayer();
           game.run();
         }   
@@ -263,8 +261,13 @@ exports.Game = function() {
   };
 
   this.didPlayerWin = function(){
-    return (purses[currentPlayer] == 6);
+    if((purses[currentPlayer] == 6)){
+      consolePlayerWon(players[currentPlayer]);    
+      return true;
+    }
+    return false;
   };
+
 };
 
 var notAWinner = false;
