@@ -74,12 +74,12 @@ $.each(questions.Rock, function(i) {
     return playernro;
   };  
 
-  var currentCategory = function(){
-    if(places[currentPlayer] == 0 && places[currentPlayer] == 4 && places[currentPlayer] == 8)
+  this.currentCategory = function(){
+    if(places[currentPlayer] == 0 || places[currentPlayer] == 4 || places[currentPlayer] == 8)
       return 'Pop';
-    if(places[currentPlayer] == 1 && places[currentPlayer] == 5 && places[currentPlayer] == 9) 
+    if(places[currentPlayer] == 1 || places[currentPlayer] == 5 || places[currentPlayer] == 9) 
       return 'Science';
-    if(places[currentPlayer] == 2 && places[currentPlayer] == 6 && places[currentPlayer] == 10)
+    if(places[currentPlayer] == 2 || places[currentPlayer] == 6 || places[currentPlayer] == 10)
       return 'Sports';
     return 'Rock';
   };
@@ -152,28 +152,28 @@ $.each(questions.Rock, function(i) {
   var askQuestion = function(callback){
      
 
-      if(currentCategory() == 'Pop'){
+      if(this.currentCategory() == 'Pop'){
       random = Math.floor(Math.random()*popQuestions.length);
       currentQuestion = popQuestions[random][0];
       currentAnswer = (popQuestions[random][1] === "true") ? true : false;
       consoleQuestion(players[currentPlayer], currentQuestion);
     }
 
-    if(currentCategory() == 'Science'){
+    if(this.currentCategory() == 'Science'){
       random = Math.floor(Math.random()*scienceQuestions.length);
       currentQuestion = scienceQuestions[random][0];
       currentAnswer = (scienceQuestions[random][1] === "true") ? true : false;
       consoleQuestion(players[currentPlayer], currentQuestion);
     }
 
-    if(currentCategory() == 'Sports'){
+    if(this.currentCategory() == 'Sports'){
       random = Math.floor(Math.random()*sportsQuestions.length);
       currentQuestion = sportsQuestions[random][0];
       currentAnswer = (sportsQuestions[random][1] === "true") ? true : false; 
       consoleQuestion(players[currentPlayer], currentQuestion);
     }
 
-    if(currentCategory() == 'Rock'){
+    if(this.currentCategory() == 'Rock'){
       random = Math.floor(Math.random()*rockQuestions.length);
       currentQuestion = rockQuestions[random][0];
       currentAnswer = (rockQuestions[random][1] === "true") ? true : false; 
@@ -232,7 +232,7 @@ $.each(questions.Rock, function(i) {
         consoleGeneric(players[currentPlayer] + " is getting out of the penalty box");  
         this.currentPlace(roll);
         consoleGeneric(players[currentPlayer] + "'s new location is " + places[currentPlayer]);
-        consoleGeneric("The category is " + currentCategory());
+        consoleGeneric("The category is " + this.currentCategory());
         return true;
       } else{
         consoleGeneric(players[currentPlayer] + " is not getting out of the penalty box");
@@ -250,7 +250,7 @@ $.each(questions.Rock, function(i) {
     }else{
     this.currentPlace(roll);
     consoleGeneric(players[currentPlayer] + "'s new location is " + places[currentPlayer]);
-    consoleGeneric("The category is " + currentCategory());
+    consoleGeneric("The category is " + this.currentCategory());
     }  
   };
 
@@ -259,6 +259,7 @@ $.each(questions.Rock, function(i) {
       if(places[currentPlayer] > 11){
         places[currentPlayer] = places[currentPlayer] - 12;
       }
+      return true;
   };
 
   this.wasCorrectlyAnswered = function(){

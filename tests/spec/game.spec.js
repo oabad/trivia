@@ -36,6 +36,27 @@ describe("playing the trivia game", function() {
 	expect(game.didPlayerWin()).toBeFalsy();
   });
   
+  it("should change the question category based on the player place", function() {
+	expect(game.currentPlace(0)).toBeTruthy();
+	expect(game.currentCategory()).toEqual("Pop");
+	expect(game.currentPlace(1)).toBeTruthy();
+	expect(game.currentCategory()).toEqual("Science");
+	expect(game.currentPlace(1)).toBeTruthy();
+	expect(game.currentCategory()).toEqual("Sports");
+	expect(game.currentPlace(1)).toBeTruthy();
+	expect(game.currentCategory()).toEqual("Rock");
+	expect(game.currentPlace(1)).toBeTruthy();
+	expect(game.currentCategory()).toEqual("Pop");
+	expect(game.currentPlace(1)).toBeTruthy();
+	expect(game.currentCategory()).toEqual("Science");
+	expect(game.currentPlace(5)).toBeTruthy();
+	expect(game.currentCategory()).toEqual("Sports");
+	expect(game.currentPlace(1)).toBeTruthy();
+	expect(game.currentCategory()).toEqual("Rock");
+	expect(game.currentPlace(10)).toBeTruthy();
+	expect(game.currentCategory()).toEqual("Science");
+  });
+  
   it("should put player on penalty box if the answer is wrong", function() {
 	expect(game.setNextPlayer()).toBeTruthy();
 	expect(game.wrongAnswer()).toBeTruthy();
@@ -47,5 +68,5 @@ describe("playing the trivia game", function() {
   
   it("should leave the penalty box if he roll is odd", function() {
 	expect(game.leavePenality(3)).toBeTruthy();
-  });
+  });  
 });
