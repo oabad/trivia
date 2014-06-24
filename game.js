@@ -186,7 +186,7 @@ exports.Game = function() {
         resizable: false,
         modal: true,
         closeOnEscape: false,
-        title: "Your Turn!",
+        title: "Your Turn! The Category is " + game.currentCategory(),
         height: 250,
         width: 400,
         buttons: {
