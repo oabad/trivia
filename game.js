@@ -118,7 +118,7 @@ exports.Game = function() {
   };
 
   this.run = function() {
-    this.roll(Math.floor(Math.random()*6) + 1);
+    this.roll();
     height += div.height();
     if(inPenaltyBox[currentPlayer]){
           game.setNextPlayer();
@@ -214,33 +214,29 @@ exports.Game = function() {
   }
 };
 
-  this.leavePenality = function(roll){
+  this.checkPenaltyBox = function(roll){
     if(inPenaltyBox[currentPlayer]){
       if(roll % 2 != 0){
         inPenaltyBox[currentPlayer] = false;
-        consoleGeneric(players[currentPlayer] + " is getting out of the penalty box");  
-        this.currentPlace(roll);
-        consoleGeneric(players[currentPlayer] + "'s new location is " + places[currentPlayer]);
-        consoleGeneric("The category is " + game.currentCategory());
+        consoleLeavePenaltyBox(players[currentPlayer]);
         return true;
       } else{
-        consoleGeneric(players[currentPlayer] + " is not getting out of the penalty box");
+        consoleNotLeavePenaltyBox(players[currentPlayer]);
         div.animate({scrollTop: height}, 500);
-        false;
+        return false;
       }
     }
+    return true
   };
 
-  this.roll = function(roll){
-    consoleGeneric(players[currentPlayer] + " is the current player");
-    consoleGeneric("They have rolled a " + roll);
-    if(inPenaltyBox[currentPlayer]){
-      this.leavePenality(roll);
-    }else{
-    this.currentPlace(roll);
-    consoleGeneric(players[currentPlayer] + "'s new location is " + places[currentPlayer]);
-    consoleGeneric("The category is " + game.currentCategory());
-    }  
+  this.roll = function(){
+    roll = Math.floor(Math.random()*6) + 1;
+    consoleRoll(players[currentPlayer],roll);
+    if(game.checkPenaltyBox(roll)){
+      this.currentPlace(roll);
+      consoleNewLocation(players[currentPlayer], places[currentPlayer], game.currentCategory());
+    }
+    return roll;
   };
 
   this.currentPlace = function(roll){
@@ -252,10 +248,8 @@ exports.Game = function() {
   };
 
   this.wasCorrectlyAnswered = function(){
-    consoleGeneric("<span class='green'>Answer was correct!!!!<span>");
     purses[currentPlayer] += 1;
-    consoleGeneric(players[currentPlayer] + " now has <b>" +
-                purses[currentPlayer]  + " Gold Coins</b>.");
+    consoleCorrectAnswer(players[currentPlayer], purses[currentPlayer]);
 
     var winner = this.didPlayerWin();
     div.animate({scrollTop: height}, 500);
