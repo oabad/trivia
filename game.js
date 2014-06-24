@@ -1,6 +1,7 @@
 exports = typeof window !== "undefined" && window !== null ? window : global;
 
 exports.Game = function() {
+
   var players         = new Array();
   var playersAvatars  = new Array();
   var places          = new Array(6);
@@ -17,32 +18,34 @@ exports.Game = function() {
 
   var currentPlayer    = 0;
   var isGettingOutOfPenaltyBox = false;
+
+  //scrool
   var div = $('#gameConsole');
   var height = div.height();
 
-//Defining Questions
-$.each(questions.Sports, function(i) {
+  //Defining Questions
+  $.each(questions.Sports, function(i) {
           sportsQuestions[i] = new Array();
           sportsQuestions[i].push(questions.Sports[i].Question);
           sportsQuestions[i].push(questions.Sports[i].answer);
           sportsQuestions[i].push(questions.Sports[i].tip);
     });
 
-$.each(questions.Science, function(i) {
+  $.each(questions.Science, function(i) {
           scienceQuestions[i] = new Array();
           scienceQuestions[i].push(questions.Science[i].Question);
           scienceQuestions[i].push(questions.Science[i].answer);
           scienceQuestions[i].push(questions.Science[i].tip);
     });
 
-$.each(questions.Pop, function(i) {
+  $.each(questions.Pop, function(i) {
           popQuestions[i] = new Array();
           popQuestions[i].push(questions.Pop[i].Question);
           popQuestions[i].push(questions.Pop[i].answer);
           popQuestions[i].push(questions.Pop[i].tip);
     });
 
-$.each(questions.Rock, function(i) {
+  $.each(questions.Rock, function(i) {
           rockQuestions[i] = new Array();
           rockQuestions[i].push(questions.Rock[i].Question);
           rockQuestions[i].push(questions.Rock[i].answer);
@@ -55,8 +58,7 @@ $.each(questions.Rock, function(i) {
 
   var randomName = function(){
     id = Math.floor(Math.random()*names.length);
-    name = names[id];
-    return name;
+    return names[id];
   };
 
   //Gravatar
@@ -83,10 +85,6 @@ $.each(questions.Rock, function(i) {
       return 'Sports';
     return 'Rock';
   };
- 
-  this.isPlayable = function(howManyPlayers){
-    return howManyPlayers >= 2;
-  };
 
   this.addPlayers = function(firstPlayer, firstPlayerAvatar, nroPlayers){
     for (var i = 0; i < nroPlayers; i++) {
@@ -108,17 +106,14 @@ $.each(questions.Rock, function(i) {
     
     var email = $("#email").val(); 
     var name = $("#name").val();
-    var howManyPlayers = $("#nrOponents").val();
+    var nrOponents = parseInt($("#nrOponents").val());
+    var nroPlayers = nrOponents + 1;
 
-    if(!newGameValidation(name,howManyPlayers)){
+    if(!newGameValidation(name,nrOponents)){
       return ;
     };
 
-    if(!this.isPlayable(parseInt(howManyPlayers) + 1)){
-      return ;
-    }
-
-    this.addPlayers(name,email,parseInt(howManyPlayers) + 1);
+    this.addPlayers(name,email,nroPlayers);
     cleanLayout();
     prepareLayout(players,playersAvatars);
     currentPlayer = this.setFirstPlayer(players.length);

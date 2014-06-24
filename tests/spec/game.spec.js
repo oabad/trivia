@@ -2,18 +2,18 @@ describe("When starting a trivia game", function() {
   it("define de object game", function() {
     expect(Game).toBeDefined();
   });
+  
+  it("should check new game conditions", function() {
+	expect(newGameValidation("String Name",3)).toBeTruthy();
+	expect(newGameValidation("",3)).toBeFalsy();
+	expect(newGameValidation("Leo",1)).toBeFalsy();
+	expect(newGameValidation("",5)).toBeFalsy();
+	expect(newGameValidation("String",5)).toBeFalsy();
+  });
+  
   it("should add players", function() {
     expect(game.addPlayers("leonardo", "leo@leonardobg.com.br", "3")).toBeTruthy();
   });  
-  
-  it("should check if its playable", function() {
-    expect(game.addPlayers("leonardo", "leo@leonardobg.com.br", "3")).toBeTruthy();
-  });
-  
-  it("should ensure the minium players", function() {
-	expect(game.isPlayable(2)).toBeTruthy();
-	expect(game.isPlayable(1)).toBeFalsy();
-  });
   
   it("should set default avatar when none was set", function() {
 	expect(game.avatar("")).toEqual("lib/img/default_avatar.png");
