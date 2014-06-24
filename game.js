@@ -150,30 +150,30 @@ $.each(questions.Rock, function(i) {
   };
 
   var askQuestion = function(callback){
-     
+      
 
-      if(this.currentCategory() == 'Pop'){
+      if( game.currentCategory() == 'Pop'){
       random = Math.floor(Math.random()*popQuestions.length);
       currentQuestion = popQuestions[random][0];
       currentAnswer = (popQuestions[random][1] === "true") ? true : false;
       consoleQuestion(players[currentPlayer], currentQuestion);
     }
 
-    if(this.currentCategory() == 'Science'){
+    if(game.currentCategory() == 'Science'){
       random = Math.floor(Math.random()*scienceQuestions.length);
       currentQuestion = scienceQuestions[random][0];
       currentAnswer = (scienceQuestions[random][1] === "true") ? true : false;
       consoleQuestion(players[currentPlayer], currentQuestion);
     }
 
-    if(this.currentCategory() == 'Sports'){
+    if(game.currentCategory() == 'Sports'){
       random = Math.floor(Math.random()*sportsQuestions.length);
       currentQuestion = sportsQuestions[random][0];
       currentAnswer = (sportsQuestions[random][1] === "true") ? true : false; 
       consoleQuestion(players[currentPlayer], currentQuestion);
     }
 
-    if(this.currentCategory() == 'Rock'){
+    if(game.currentCategory() == 'Rock'){
       random = Math.floor(Math.random()*rockQuestions.length);
       currentQuestion = rockQuestions[random][0];
       currentAnswer = (rockQuestions[random][1] === "true") ? true : false; 
@@ -232,7 +232,7 @@ $.each(questions.Rock, function(i) {
         consoleGeneric(players[currentPlayer] + " is getting out of the penalty box");  
         this.currentPlace(roll);
         consoleGeneric(players[currentPlayer] + "'s new location is " + places[currentPlayer]);
-        consoleGeneric("The category is " + this.currentCategory());
+        consoleGeneric("The category is " + game.currentCategory());
         return true;
       } else{
         consoleGeneric(players[currentPlayer] + " is not getting out of the penalty box");
@@ -250,7 +250,7 @@ $.each(questions.Rock, function(i) {
     }else{
     this.currentPlace(roll);
     consoleGeneric(players[currentPlayer] + "'s new location is " + places[currentPlayer]);
-    consoleGeneric("The category is " + this.currentCategory());
+    consoleGeneric("The category is " + game.currentCategory());
     }  
   };
 
