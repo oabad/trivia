@@ -120,20 +120,20 @@ exports.Game = function() {
   this.run = function() {
     this.roll();
     height += div.height();
-    if(inPenaltyBox[currentPlayer]){
+
+    if(!inPenaltyBox[currentPlayer]){
+      askQuestion(function(answer){
+        if(game.didPlayerWin()){
+        consolePlayerWon(player[currentPlayer]);
+        } else {
           game.setNextPlayer();
           game.run();
-       } else {
-        askQuestion(function(answer){
-          notAWinner = answer;  
-          if(notAWinner){            
-            game.setNextPlayer();
-            game.run();
-          }else{
-            consoleGeneric('WOW! ' + players[currentPlayer] + ' Won the game!');
-          }
-        });
-       }
+        }   
+      });
+    } else {
+      game.setNextPlayer();
+      game.run();
+    }
   };
 
   this.howManyPlayers = function(){
@@ -250,11 +250,8 @@ exports.Game = function() {
   this.wasCorrectlyAnswered = function(){
     purses[currentPlayer] += 1;
     consoleCorrectAnswer(players[currentPlayer], purses[currentPlayer]);
-
-    var winner = this.didPlayerWin();
     div.animate({scrollTop: height}, 500);
-
-    return winner;
+    return true;
   };
 
   this.wrongAnswer = function(){
@@ -272,7 +269,7 @@ exports.Game = function() {
   };
 
   this.didPlayerWin = function(){
-    return !(purses[currentPlayer] == 6)
+    return (purses[currentPlayer] == 6);
   };
 };
 

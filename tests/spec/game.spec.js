@@ -30,10 +30,10 @@ describe("playing the trivia game", function() {
   });
   
   it("should only win when getting 6 gold", function() {
-	expect(game.didPlayerWin()).toBeTruthy();
-	expect(game.wasCorrectlyAnswered()).toBeTruthy();
-	expect(game.wasCorrectlyAnswered()).toBeFalsy();
 	expect(game.didPlayerWin()).toBeFalsy();
+	expect(game.wasCorrectlyAnswered()).toBeTruthy();
+	expect(game.wasCorrectlyAnswered()).toBeTruthy();
+	expect(game.didPlayerWin()).toBeTruthy();
   });
   
   it("should change the question category based on the player place", function() {
@@ -63,10 +63,10 @@ describe("playing the trivia game", function() {
   });
   
   it("should not leave the penalty box if he roll is even", function() {
-	expect(game.leavePenality(2)).toBeFalsy();
+	expect(game.checkPenaltyBox(2)).toBeFalsy();
   });
   
   it("should leave the penalty box if he roll is odd", function() {
-	expect(game.leavePenality(3)).toBeTruthy();
+	expect(game.checkPenaltyBox(3)).toBeTruthy();
   });  
 });
