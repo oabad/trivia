@@ -134,48 +134,58 @@ exports.Game = function() {
     return players.length;
   };
 
-  var askQuestion = function(callback){
-      if( game.currentCategory() == 'Pop'){
+  this.questionManager = function() {
+
+    if( game.currentCategory() == 'Pop'){
       random = Math.floor(Math.random()*popQuestions.length);
       currentQuestion = popQuestions[random][0];
       currentAnswer = (popQuestions[random][1] === "true") ? true : false;
-      consoleQuestion(players[currentPlayer], currentQuestion);
     }
 
     if(game.currentCategory() == 'Science'){
       random = Math.floor(Math.random()*scienceQuestions.length);
       currentQuestion = scienceQuestions[random][0];
       currentAnswer = (scienceQuestions[random][1] === "true") ? true : false;
-      consoleQuestion(players[currentPlayer], currentQuestion);
     }
 
     if(game.currentCategory() == 'Sports'){
       random = Math.floor(Math.random()*sportsQuestions.length);
       currentQuestion = sportsQuestions[random][0];
       currentAnswer = (sportsQuestions[random][1] === "true") ? true : false; 
-      consoleQuestion(players[currentPlayer], currentQuestion);
     }
 
     if(game.currentCategory() == 'Rock'){
       random = Math.floor(Math.random()*rockQuestions.length);
       currentQuestion = rockQuestions[random][0];
       currentAnswer = (rockQuestions[random][1] === "true") ? true : false; 
-      consoleQuestion(players[currentPlayer], currentQuestion);
     }
+  }
 
-    if(currentPlayer != 0){
-        setTimeout( function() {
-          if(Math.floor(Math.random()*2) == 1){
+  var botAnswer = function(){
+    return Math.floor(Math.random()*2);
+  }
+
+  var askQuestion = function(callback){
+    game.questionManager();
+    consoleQuestion(players[currentPlayer],currentQuestion);
+
+    setTimeout( function() {
+      if(currentPlayer != 0){
+          if(botAnswer() == 1){
             answer =  game.wrongAnswer();
             callback.call(this, answer);  
           }else{
             answer = game.wasCorrectlyAnswered();
             callback.call(this, answer);
           }
-        }, 3000);  
     } else{
-    $("#playerTurn").html(currentQuestion);
-    setTimeout( function() {
+      game.playerQuestionPopup(callback);
+    }
+  }, 2500);
+};
+
+this.playerQuestionPopup = function(callback){
+      $("#playerTurn").html(currentQuestion);
       $("#playerTurn").dialog({
         resizable: false,
         modal: true,
@@ -204,9 +214,7 @@ exports.Game = function() {
                 }                
             }    
     });
-    }, 2000);
-  }
-};
+}
 
   this.checkPenaltyBox = function(roll){
     if(inPenaltyBox[currentPlayer]){
