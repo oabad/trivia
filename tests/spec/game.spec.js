@@ -9,6 +9,8 @@ describe("When starting a trivia game", function() {
 	expect(newGameValidation("Leo",1)).toBeFalsy();
 	expect(newGameValidation("",5)).toBeFalsy();
 	expect(newGameValidation("String",5)).toBeFalsy();
+	expect(newGameValidation("String","string")).toBeFalsy();
+	expect(newGameValidation("","string")).toBeFalsy();
   });
   
   it("should add players", function() {
